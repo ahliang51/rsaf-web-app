@@ -1,0 +1,69 @@
+<mat-toolbar>Home</mat-toolbar>
+<div class="container">
+  <div class="row text-center">
+    <div class="col">
+      <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </div>
+    <div class="col">
+      <mat-form-field>
+        <mat-label>Select Company</mat-label>
+        <mat-select>
+          <mat-option value="alpha">ALPHA</mat-option>
+          <mat-option value="bravo">BRAVO</mat-option>
+          <mat-option value="charlie">CHARLIE</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col">
+      <mat-form-field>
+        <mat-label>Select Ration Type</mat-label>
+        <mat-select>
+          <mat-option value="non-muslim">NON-MUSLIM</mat-option>
+          <mat-option value="muslim">MUSLIM</mat-option>
+          <mat-option value="vegetarian">VEGETARIAN</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div>
+      <button type="button" class="btn btn-primary" (click)="onSearch()">Search</button>
+    </div>
+  </div>
+</div>
+
+
+<div class="container" *ngIf="search">
+  <div class="row text-center">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef class="text-center"> No. </th>
+        <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef class="text-center"> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="breakfast">
+        <th mat-header-cell *matHeaderCellDef class="text-center"> Breakfast </th>
+        <td mat-cell *matCellDef="let element"> {{element.breakfast}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="lunch">
+        <th mat-header-cell *matHeaderCellDef class="text-center"> Lunch </th>
+        <td mat-cell *matCellDef="let element"> {{element.lunch}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="dinner">
+        <th mat-header-cell *matHeaderCellDef class="text-center"> Dinner </th>
+        <td mat-cell *matCellDef="let element"> {{element.dinner}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+</div>
